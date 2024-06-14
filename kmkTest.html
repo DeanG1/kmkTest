@@ -4367,7 +4367,6 @@
           correct_answer: "широк радиоспектър",
         },
       ];
-
       let randomQuestions = [];
 
       function shuffle(array) {
@@ -4394,10 +4393,10 @@
           questionDiv.innerHTML = `<p>${q.question}</p>`;
           q.possible_answers.forEach((answer, i) => {
             questionDiv.innerHTML += `
-                    <label>
-                        <input type="radio" name="question${index}" value="${answer}">
-                        ${answer}
-                    </label><br>`;
+        <label>
+          <input type="radio" name="question${index}" value="${answer}">
+          ${answer}
+        </label><br>`;
           });
           li.appendChild(questionDiv);
           ol.appendChild(li);
@@ -4418,14 +4417,19 @@
           );
           const questionDiv =
             document.getElementsByClassName("question")[index];
-          if (selectedAnswer) {
-            if (selectedAnswer.value === q.correct_answer) {
-              questionDiv.innerHTML += `<p class="correct">Correct!</p>`;
+          if (!questionDiv.querySelector(".result")) {
+            const resultDiv = document.createElement("div");
+            resultDiv.classList.add("result");
+            if (selectedAnswer) {
+              if (selectedAnswer.value === q.correct_answer) {
+                resultDiv.innerHTML = `<p class="correct">Correct!</p>`;
+              } else {
+                resultDiv.innerHTML = `<p class="incorrect">Incorrect! The correct answer is: ${q.correct_answer}</p>`;
+              }
             } else {
-              questionDiv.innerHTML += `<p class="incorrect">Incorrect! The correct answer is: ${q.correct_answer}</p>`;
+              resultDiv.innerHTML = `<p class="incorrect">No answer selected! The correct answer is: ${q.correct_answer}</p>`;
             }
-          } else {
-            questionDiv.innerHTML += `<p class="incorrect">No answer selected! The correct answer is: ${q.correct_answer}</p>`;
+            questionDiv.appendChild(resultDiv);
           }
         });
       }
