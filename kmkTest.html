@@ -4368,7 +4368,7 @@
         },
       ];
 
-      let randomQuestions = []; // Store the random questions here
+      let randomQuestions = [];
 
       function shuffle(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -4379,16 +4379,16 @@
       }
 
       function getRandomQuestions(questions, num) {
-        return shuffle([...questions]).slice(0, num); // Shuffle and slice a copy of the questions array
+        return shuffle([...questions]).slice(0, num);
       }
 
       function loadQuiz() {
         const quizDiv = document.getElementById("quiz");
         quizDiv.innerHTML = "";
-        const ol = document.createElement("ol"); // Create an ordered list
+        const ol = document.createElement("ol");
 
         randomQuestions.forEach((q, index) => {
-          const li = document.createElement("li"); // Create a list item for each question
+          const li = document.createElement("li");
           const questionDiv = document.createElement("div");
           questionDiv.classList.add("question");
           questionDiv.innerHTML = `<p>${q.question}</p>`;
@@ -4407,8 +4407,8 @@
       }
 
       function generateQuiz() {
-        randomQuestions = getRandomQuestions(questions, 20); // Get new random questions and store them
-        loadQuiz(); // Load the quiz with the new random questions
+        randomQuestions = getRandomQuestions(questions, 20);
+        loadQuiz();
       }
 
       function submitQuiz() {
@@ -4431,10 +4431,10 @@
       }
 
       function resetQuiz() {
-        loadQuiz(); // Reload the current set of random questions
+        loadQuiz();
       }
 
-      window.onload = generateQuiz; // Generate a quiz when the page loads
+      window.onload = generateQuiz;
     </script>
   </body>
 </html>
